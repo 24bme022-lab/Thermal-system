@@ -1,0 +1,53 @@
+from reportlab.lib.pagesizes import A4
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table
+from reportlab.lib.styles import getSampleStyleSheet
+
+# File path for output PDF
+pdf_path = "Thermal_System_Report_SDS.pdf"
+
+# Document setup
+doc = SimpleDocTemplate(pdf_path, pagesize=A4)
+styles = getSampleStyleSheet()
+story = []
+
+# Title
+story.append(Paragraph("Project Report – Thermal System", styles['Title']))
+story.append(Spacer(1, 12))
+
+# Project Title
+story.append(Paragraph("1. Project Title: Design and Analysis of a Thermal System", styles['Normal']))
+story.append(Spacer(1, 8))
+
+# Team Members
+story.append(Paragraph("2. Team Members:", styles['Normal']))
+data = [["Name", "Roll No", "Email", "Role"],
+        ["Shiv Dev Singh", "XXXXX", "shiv@example.com", "Modeling & Simulation"]]
+table = Table(data, colWidths=[120, 80, 150, 130])
+story.append(table)
+story.append(Spacer(1, 8))
+
+# Abstract
+story.append(Paragraph("3. Abstract: This project focuses on analyzing a thermal system "
+                       "to improve heat transfer efficiency using modeling and simulation.", styles['Normal']))
+story.append(Spacer(1, 8))
+
+# Problem Statement
+story.append(Paragraph("4. Problem Statement: Inefficiencies in thermal systems cause energy losses, "
+                       "requiring optimization for better performance.", styles['Normal']))
+story.append(Spacer(1, 8))
+
+# Methodology
+story.append(Paragraph("5. Methodology: Mathematical modeling, MATLAB/ANSYS simulations, "
+                       "and system performance evaluation.", styles['Normal']))
+story.append(Spacer(1, 8))
+
+# Results
+story.append(Paragraph("6. Results: Optimized system achieved ~15% efficiency improvement.", styles['Normal']))
+story.append(Spacer(1, 8))
+
+# Future Scope
+story.append(Paragraph("7. Future Scope: Integration with renewable energy-based thermal systems.", styles['Normal']))
+
+# Build PDF
+doc.build(story)
+print(f"PDF generated successfully: {pdf_path}")
